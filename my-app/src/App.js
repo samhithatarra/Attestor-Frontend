@@ -38,11 +38,11 @@ function App() {
       </div>
       <div className="upload-status">
         <div className="scrollable">
-          <textarea id="json-textarea-1" ref={jsonTextarea1Ref} wrap="soft" rows="10"></textarea>
+          <textarea id="json-textarea-1" readonly="yes" ref={jsonTextarea1Ref} wrap="soft" rows="10"></textarea>
         </div>
         <div className="spacer"></div>
         <div className="scrollable">
-          <textarea id="json-textarea-2" ref={jsonTextarea2Ref} wrap="soft" rows="10"></textarea>
+          <textarea id="json-textarea-2" readonly="yes" ref={jsonTextarea2Ref} wrap="soft" rows="10"></textarea>
         </div>
       </div>
     </body>

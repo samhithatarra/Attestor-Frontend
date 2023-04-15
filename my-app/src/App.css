@@ -92,6 +92,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   height: 350px;
+  border-radius: 10px;
 }
 
 .scrollable {
@@ -105,4 +106,5 @@ textarea {
   height: 350px;
   padding: 5px;
   border: none;
+  border-radius: 10px;
 }
