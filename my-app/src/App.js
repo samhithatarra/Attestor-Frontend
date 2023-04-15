@@ -1,86 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 
 function App() {
-  const [file1, setFile1] = useState(null);
-  const [file2, setFile2] = useState(null);
-
-  const handleFile1Upload = (event) => {
-    setFile1(event.target.files[0]);
-  };
-
-  const handleFile2Upload = (event) => {
-    setFile2(event.target.files[0]);
-  };
+  const jsonTextarea1Ref = useRef(null);
+  const jsonTextarea2Ref = useRef(null);
 
   const handleUpload = () => {
-    const formData = new FormData();
-    formData.append('file1', file1);
-    formData.append('file2', file2);
+    const inputCount = document.getElementById('inputCount').value;
+    const inputMessage = document.getElementById('inputMessage').value;
 
     fetch('http://localhost:5000/upload', {
       method: 'POST',
-      body: formData,
+      body: JSON.stringify({ inputCount: inputCount, inputMessage: inputMessage}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        jsonTextarea1Ref.current.value = JSON.stringify(data.data1, null, 2);
+        jsonTextarea2Ref.current.value = JSON.stringify(data, null, 2);
+      })
       .catch((error) => console.error(error));
   };
-  const handleDragOver = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
-  const handleDrop = (event, fileHandler) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const file = event.dataTransfer.files[0];
-
-    fileHandler(file);
-  };
-
-
-
 
   return (
-    
     <body>
-  <div className="container">
-    <div className="square square-1" onDragOver={handleDragOver}
-          onDrop={(event) => handleDrop(event, setFile1)}>
-      <div className="file-upload">
-        <label htmlFor="file1" className="file-upload-label">
-          {file1 ? file1.name : "Upload Voters File"}
-        </label>
-        <input type="file" id="file1" accept="text/csv" onChange={handleFile1Upload} />
+      <div class="logo-container">
+        <img src="logo.png" alt="Logo" />
       </div>
-    </div>
-    <div className="square square-2" onDragOver={handleDragOver}
-          onDrop={(event) => handleDrop(event, setFile2)}>
-      <div className="file-upload">
-        <label htmlFor="file2" className="file-upload-label">
-          {file2 ? file2.name : "Upload Votes File"}
-        </label>
-        <input type="file" id="file2" accept="text/csv" onChange={handleFile2Upload} />
+
+      <div className="square">
+        <input id='inputCount' placeholder='Number of Validators' type="text" />
+        <input id='inputMessage' placeholder='Message to be Proved' type="text" />
+
+        <button onClick={handleUpload}>Upload</button>
       </div>
-    </div>
-    <br />
-    <button onClick={handleUpload}>Upload</button>
-  </div>
-  <div class="upload-status">
-      <p>Upload status goes here</p>
-    </div>
-
-
-
-</body>
-
-
-
-
-
-
+      <div className="upload-status">
+        <div className="scrollable">
+          <textarea id="json-textarea-1" ref={jsonTextarea1Ref} wrap="soft" rows="10"></textarea>
+        </div>
+        <div className="spacer"></div>
+        <div className="scrollable">
+          <textarea id="json-textarea-2" ref={jsonTextarea2Ref} wrap="soft" rows="10"></textarea>
+        </div>
+      </div>
+    </body>
   );
 }
 
