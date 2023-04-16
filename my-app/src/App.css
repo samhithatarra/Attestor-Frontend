@@ -97,14 +97,14 @@ button:hover {
 
 .scrollable {
   width: 50%;
-  height: 350px;
+  height: 380px;
   overflow: auto;
 }
 
 textarea {
   resize: none;
   width: 90%;
-  height: 350px;
+  height: 330px;
   padding: 5px;
   border: none;
   border-radius: 10px;
