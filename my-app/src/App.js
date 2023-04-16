@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 
 function App() {
   const jsonTextarea1Ref = useRef(null);
   const jsonTextarea2Ref = useRef(null);
+  const [isUploadComplete, setIsUploadComplete] = useState(false);
 
 
   const handleUpload = () => {
@@ -20,8 +21,11 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
+        setIsUploadComplete(true);
         jsonTextarea1Ref.current.value = JSON.stringify(data.data1, null, 2);
         jsonTextarea2Ref.current.value = JSON.stringify(data.data2, null, 2);
+        
+        // console.log(isUploadComplete)
       })
       .catch((error) => console.error(error));
   };
@@ -47,18 +51,19 @@ function App() {
         />
         <button class="rounded-full border-0" onClick={handleUpload}>Generate</button>
       </div>
-
+      {isUploadComplete && ( 
       <div className="upload-status">
         <div className="scrollable">
           <label htmlFor="json-textarea-1">Certificate</label>
-          <textarea id="json-textarea-1" readonly="yes" ref={jsonTextarea1Ref} wrap="soft" rows="10"></textarea>
+          <textarea id="json-textarea-1" readOnly="yes" ref={jsonTextarea1Ref} wrap="soft" rows="10"></textarea>
         </div>
         <div className="spacer"></div>
         <div className="scrollable">
           <label htmlFor="json-textarea-2">Proof</label>
-          <textarea id="json-textarea-2" readonly="yes" ref={jsonTextarea2Ref} wrap="soft" rows="10"></textarea>
+          <textarea id="json-textarea-2" readOnly="yes" ref={jsonTextarea2Ref} wrap="soft" rows="10"></textarea>
         </div>
       </div>
+       )}
     </body>
   );
 }
