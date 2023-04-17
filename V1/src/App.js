@@ -33,7 +33,7 @@ function App() {
   return (
     <body>
       <div class="logo-container">
-        <img src="logo.png" alt="Logo" />
+        <img src="nexuslogo.png" alt="Logo" />
       </div>
 
       <div className="square">
