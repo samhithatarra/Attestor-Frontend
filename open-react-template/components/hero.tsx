@@ -15,10 +15,10 @@ export default function Hero() {
 
   const handleUpload = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-  
+
     const inputCount = (document.getElementById('inputCount') as HTMLInputElement).value;
     const inputMessage = (document.getElementById('inputMessage') as HTMLInputElement).value;
-  
+
     fetch('http://localhost:5000/upload', {
       method: 'POST',
       body: JSON.stringify({ inputCount, inputMessage }),
@@ -30,12 +30,12 @@ export default function Hero() {
       .then((data) => {
         setIsUploadComplete(true);
         setJsonData(data);
-        
-        
+
+
       })
       .catch((error) => console.error(error));
   };
-  
+
 
 
 
@@ -63,66 +63,95 @@ export default function Hero() {
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
             {/* Form */}
 
-      <div className="max-w-sm mx-auto ">
-            
-          
-            <form onSubmit={handleUpload}>
-              <div className="flex flex-wrap -mx-3 mb-4">
-                <div className="w-full px-3">
-                  <label className="block text-gray-300 text-sm font-medium mb-1" >Number of Validators <span className="text-red-600">*</span></label>
-                  <input id="inputCount" type="text" className="form-input w-full text-gray-300" placeholder="Enter" required />
+            <div className="max-w-sm mx-auto ">
+
+              <form onSubmit={handleUpload}>
+                <div className="flex flex-wrap -mx-3 mb-4">
+                  <div className="w-full px-3">
+                    <label className="block text-gray-300 text-sm font-medium mb-1" >Number of Validators <span className="text-red-600">*</span></label>
+                    <input id="inputCount" type="text" className="form-input w-full text-gray-300" placeholder="Enter" required />
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-wrap -mx-3 mb-4">
-                <div className="w-full px-3">
-                  <label className="block text-gray-300 text-sm font-medium mb-1">Message to be Proved <span className="text-red-600">*</span></label>
-                  <input id="inputMessage" type="text" className="form-input w-full text-gray-300" placeholder="Enter" required />
+                <div className="flex flex-wrap -mx-3 mb-4">
+                  <div className="w-full px-3">
+                    <label className="block text-gray-300 text-sm font-medium mb-1">Message to be Proved <span className="text-red-600">*</span></label>
+                    <input id="inputMessage" type="text" className="form-input w-full text-gray-300" placeholder="Enter" required />
+                  </div>
                 </div>
-              </div>
-              
-              
-              <div className="flex flex-wrap -mx-3 mt-6">
-                <div className="w-full px-3">
-                  <button type='submit' className="btn text-white bg-purple-600 hover:bg-purple-700 w-full">Generate</button>
+
+
+                <div className="flex flex-wrap -mx-3 mt-6">
+                  <div className="w-full px-3">
+                    <button type='submit' className="btn text-white bg-purple-600 hover:bg-purple-700 w-full">Generate</button>
+                  </div>
                 </div>
-              </div>
-            </form>
-      
+              </form>
+
+            </div>
+
+
+
           </div>
 
 
-            
-          </div>
-
-        
         </div>
 
       </div>
-      {isUploadComplete && ( 
-      <div className="max-w-sm mx-auto grid gap-8 lg:grid-cols-3 lg:gap-6 items-start lg:max-w-none">
+      {isUploadComplete && (
+        <div className="max-w-sm mx-auto grid gap-8 lg:grid-cols-3 lg:gap-6 items-start lg:max-w-none">
 
-      {/* 1st */}
-      <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up">
-      <textarea value={JSON.stringify(jsonData.data1, null, 2)} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-        
-      </div>
+          {/* 1st */}
 
-      {/* 2nd  */}
-      <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up" data-aos-delay="200">
-      <textarea value={JSON.stringify(jsonData.data2, null, 2)} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-      
-      </div>
+          <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up">
+            <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="100" data-aos-anchor="[data-aos-id-blocks]">
 
-      {/* 3rd  */}
-      <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up" data-aos-delay="400">
-      <textarea value={JSON.stringify(jsonData.data3, null, 2)} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-      </div>
+              <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle className="fill-current text-purple-600" cx="32" cy="32" r="32" />
+                <path className="stroke-current text-purple-100" strokeWidth="2" strokeLinecap="square" d="M21 23h22v18H21z" fill="none" fillRule="evenodd" />
+                <path className="stroke-current text-purple-300" d="M26 28h12M26 32h12M26 36h5" strokeWidth="2" strokeLinecap="square" />
+              </svg>
+              <h4 className="h4 mb-2">Certificate</h4>
+            </div>
+            <textarea value={JSON.stringify(jsonData.data1, null, 2)} rows={10} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
 
-    </div>
-       )}
+          </div>
 
-      
-      
+          {/* 2nd  */}
+          <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up" data-aos-delay="200">
+          <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="100" data-aos-anchor="[data-aos-id-blocks]">
+
+          <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <rect className="fill-current text-purple-600" width="64" height="64" rx="32" />
+                <path className="stroke-current text-purple-100" d="M30 39.313l-4.18 2.197L27 34.628l-5-4.874 6.91-1.004L32 22.49l3.09 6.26L42 29.754l-3 2.924" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd" />
+                <path className="stroke-current text-purple-300" d="M43 42h-9M43 37h-9" strokeLinecap="square" strokeWidth="2" />
+              </svg>
+<h4 className="h4 mb-2">Proof</h4>
+</div>
+            <textarea value={JSON.stringify(jsonData.data2, null, 2)} rows={10} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+
+          </div>
+
+          {/* 3rd  */}
+          <div className="flex flex-col h-full p-6 bg-gray-800" data-aos="fade-up" data-aos-delay="400">
+          <div className="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="100" data-aos-anchor="[data-aos-id-blocks]">
+
+          <svg className="w-16 h-16 mb-4" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <rect className="fill-current text-purple-600" width="64" height="64" rx="32" />
+                <g transform="translate(22 21)" strokeLinecap="square" strokeWidth="2" fill="none" fillRule="evenodd">
+                  <path className="stroke-current text-purple-100" d="M17 22v-6.3a8.97 8.97 0 003-6.569A9.1 9.1 0 0011.262 0 9 9 0 002 9v1l-2 5 2 1v4a2 2 0 002 2h4a5 5 0 005-5v-5" />
+                  <circle className="stroke-current text-purple-300" cx="13" cy="9" r="3" />
+                </g>
+              </svg>
+<h4 className="h4 mb-2">Attestors</h4>
+</div>
+            <textarea value={JSON.stringify(jsonData.data3, null, 2)} rows={10} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+          </div>
+
+        </div>
+      )}
+
+
+
     </section>
   )
 }
