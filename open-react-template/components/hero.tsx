@@ -25,9 +25,9 @@ export default function Hero() {
     })
       .then((response) => response.json())
       .then((data) => {
+
         setIsUploadComplete(true);
         setJsonData(data);
-
 
       })
       .catch((error) => console.error(error));
@@ -108,6 +108,7 @@ export default function Hero() {
                 <path className="stroke-current text-purple-300" d="M26 28h12M26 32h12M26 36h5" strokeWidth="2" strokeLinecap="square" />
               </svg>
               <h4 className="h4 mb-2">Certificate</h4>
+              <h5 className="h5 mb-2">{jsonData.genCertTime} </h5>
             </div>
             <textarea value={JSON.stringify(jsonData.data1, null, 2)} rows={10} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
 
@@ -123,6 +124,9 @@ export default function Hero() {
                 <path className="stroke-current text-purple-300" d="M43 42h-9M43 37h-9" strokeLinecap="square" strokeWidth="2" />
               </svg>
               <h4 className="h4 mb-2">Proof</h4>
+              <h5 className="h5 mb-2">{jsonData.compileZokTime} </h5>
+              <h5 className="h5 mb-2">{jsonData.computeTime} </h5>
+              <h5 className="h5 mb-2">{jsonData.verifyTime} </h5>
             </div>
             <textarea value={JSON.stringify(jsonData.data2, null, 2)} rows={10} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
 
@@ -141,6 +145,7 @@ export default function Hero() {
               </svg>
               <h4 className="h4 mb-2">Attestors</h4>
             </div>
+
             <textarea value={JSON.stringify(jsonData.data3, null, 2)} rows={10} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
           </div>
 
